@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "nombre": "Monitor LED 24",
+    "cantidad": 15,
+    "precio": 89900
+  },
+  {
+    "id": 2,
+    "nombre": "Teclado mecanico",
+    "cantidad": 32,
+    "precio": 45000
+  },
+  {
+    "id": 3,
+    "nombre": "Mouse inalambrico",
+    "cantidad": 48,
+    "precio": 12500
+  },
+  {
+    "id": 4,
+    "nombre": "Webcam HD",
+    "cantidad": 10,
+    "precio": 32000
+  },
+  {
+    "id": 5,
+    "nombre": "Auriculares bluetooth",
+    "cantidad": 22,
+    "precio": 28000
+  }
+]

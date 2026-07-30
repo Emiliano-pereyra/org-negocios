@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "nombre": "Maximiliano Perez",
+    "telefono": "11-5555-0101",
+    "email": "maxi.perez@mail.com"
+  },
+  {
+    "id": 2,
+    "nombre": "Laura Fernandez",
+    "telefono": "11-5555-0202",
+    "email": "laura.fernandez@mail.com"
+  },
+  {
+    "id": 3,
+    "nombre": "Maxi Soto",
+    "telefono": "11-5555-0303",
+    "email": "maxi.soto@mail.com"
+  },
+  {
+    "id": 4,
+    "nombre": "Roberto Diaz",
+    "telefono": "11-5555-0404",
+    "email": "roberto.diaz@mail.com"
+  },
+  {
+    "id": 5,
+    "nombre": "Silvia Torres",
+    "telefono": "11-5555-0505",
+    "email": "silvia.torres@mail.com"
+  }
+]

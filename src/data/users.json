@@ -1,0 +1,23 @@
+[
+  {
+    "usuario": "admin",
+    "idusuario": 1,
+    "idsesion": "ses-001-admin",
+    "nombre": "Ana",
+    "apellido": "Garcia"
+  },
+  {
+    "usuario": "maria",
+    "idusuario": 2,
+    "idsesion": "ses-002-maria",
+    "nombre": "Maria",
+    "apellido": "Lopez"
+  },
+  {
+    "usuario": "carlos",
+    "idusuario": 3,
+    "idsesion": "ses-003-carlos",
+    "nombre": "Carlos",
+    "apellido": "Rodriguez"
+  }
+]
