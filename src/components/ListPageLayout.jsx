@@ -1,21 +1,56 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import AuthGuard from "@/components/AuthGuard";
 import DataTable from "@/components/DataTable";
 import SearchBar from "@/components/SearchBar";
+import { apiGet } from "@/lib/api/client";
 
 export default function ListPageLayout({
   title,
   columns,
-  data,
+  apiEndpoint,
   sortKey,
   sortOrder = "none",
   searchPlaceholder,
 }) {
   const [searchInput, setSearchInput] = useState("");
   const [activeSearch, setActiveSearch] = useState("");
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function fetchData() {
+      setLoading(true);
+      setError("");
+
+      try {
+        const response = await apiGet(apiEndpoint);
+        if (isMounted) {
+          setData(response.data ?? []);
+        }
+      } catch (fetchError) {
+        if (isMounted) {
+          setError(fetchError.message);
+          setData([]);
+        }
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    }
+
+    fetchData();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [apiEndpoint]);
 
   const filteredRows = useMemo(() => {
     if (!activeSearch.trim()) {
@@ -52,6 +87,16 @@ export default function ListPageLayout({
             placeholder={searchPlaceholder}
           />
         </div>
+
+        {loading && (
+          <p className="mb-4 text-sm text-neutral-600">Cargando datos...</p>
+        )}
+
+        {error && (
+          <p className="mb-4 text-sm text-neutral-800" role="alert">
+            {error}
+          </p>
+        )}
 
         <DataTable
           columns={columns}

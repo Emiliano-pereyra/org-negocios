@@ -1,8 +1,6 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-import credentials from "@/data/credentials.json";
-import users from "@/data/users.json";
 
 const STORAGE_KEY = "org-negocios-user";
 
@@ -25,33 +23,39 @@ export function UserProvider({ children }) {
     setIsReady(true);
   }, []);
 
-  // Valida credenciales con comparacion exacta (case sensitive)
-  function login(usuario, password) {
-    const match = credentials.find(
-      (item) => item.usuario === usuario && item.password === password
-    );
+  // Login contra API protegida del servidor (Supabase)
+  async function login(usuario, password) {
+    try {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ usuario, password }),
+      });
 
-    if (!match) {
-      return { ok: false, message: "Usuario o contraseña incorrectos." };
+      const payload = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        return {
+          ok: false,
+          message: payload.error || "No se pudo iniciar sesion.",
+        };
+      }
+
+      const sessionUser = {
+        ...payload.user,
+        token: payload.token,
+      };
+
+      setUser(sessionUser);
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(sessionUser));
+
+      return { ok: true };
+    } catch {
+      return {
+        ok: false,
+        message: "Error de conexion con el servidor.",
+      };
     }
-
-    const userData = users.find((item) => item.usuario === match.usuario);
-
-    if (!userData) {
-      return { ok: false, message: "No se encontraron datos del usuario." };
-    }
-
-    const sessionUser = {
-      idusuario: userData.idusuario,
-      idsesion: userData.idsesion,
-      nombre: userData.nombre,
-      apellido: userData.apellido,
-    };
-
-    setUser(sessionUser);
-    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(sessionUser));
-
-    return { ok: true };
   }
 
   function logout() {

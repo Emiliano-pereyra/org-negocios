@@ -1,5 +1,4 @@
 import ListPageLayout from "@/components/ListPageLayout";
-import pagosData from "@/data/pagos.json";
 
 const columns = [
   { key: "id", label: "ID" },
@@ -13,7 +12,7 @@ export default function PagosPage() {
     <ListPageLayout
       title="Registro de pagos"
       columns={columns}
-      data={pagosData}
+      apiEndpoint="pagos"
       sortKey="fecha"
       sortOrder="desc"
       searchPlaceholder="Buscar por cliente, monto o fecha..."

@@ -1,5 +1,4 @@
 import ListPageLayout from "@/components/ListPageLayout";
-import stockData from "@/data/stock.json";
 
 const columns = [
   { key: "id", label: "ID" },
@@ -13,7 +12,7 @@ export default function StockPage() {
     <ListPageLayout
       title="Listado stock"
       columns={columns}
-      data={stockData}
+      apiEndpoint="stock"
       sortKey="precio"
       sortOrder="desc"
       searchPlaceholder="Buscar por producto, cantidad o precio..."

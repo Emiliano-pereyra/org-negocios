@@ -11,6 +11,7 @@ export default function LoginPage() {
   const [usuario, setUsuario] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Si ya hay sesion activa, redirige al home
   useEffect(() => {
@@ -19,11 +20,14 @@ export default function LoginPage() {
     }
   }, [isReady, user, router]);
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     setError("");
+    setIsSubmitting(true);
 
-    const result = login(usuario, password);
+    const result = await login(usuario, password);
+
+    setIsSubmitting(false);
 
     if (!result.ok) {
       setError(result.message);
@@ -88,9 +92,10 @@ export default function LoginPage() {
 
           <button
             type="submit"
-            className="w-full rounded-md bg-neutral-900 py-2.5 text-sm font-medium text-white transition hover:bg-neutral-700"
+            disabled={isSubmitting}
+            className="w-full rounded-md bg-neutral-900 py-2.5 text-sm font-medium text-white transition hover:bg-neutral-700 disabled:cursor-not-allowed disabled:opacity-60"
           >
-            Ingresar
+            {isSubmitting ? "Ingresando..." : "Ingresar"}
           </button>
         </form>
       </div>

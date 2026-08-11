@@ -1,5 +1,4 @@
 import ListPageLayout from "@/components/ListPageLayout";
-import clientesData from "@/data/clientes.json";
 
 const columns = [
   { key: "id", label: "ID" },
@@ -13,7 +12,7 @@ export default function ClientesPage() {
     <ListPageLayout
       title="Listado de clientes"
       columns={columns}
-      data={clientesData}
+      apiEndpoint="clientes"
       sortKey="nombre"
       sortOrder="asc"
       searchPlaceholder="Buscar por nombre, telefono o email..."
