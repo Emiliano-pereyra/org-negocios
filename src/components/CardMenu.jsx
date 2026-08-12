@@ -3,7 +3,7 @@ import Link from "next/link";
 // Configuracion de cada variante de card del menu principal
 const CARD_VARIANTS = {
   stock: {
-    title: "Listado stock",
+    title: "Stock",
     description: "Consulta productos, cantidades y precios del inventario.",
     href: "/stock",
   },

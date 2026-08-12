@@ -13,10 +13,25 @@ export async function loginUser(usuario, password) {
     .maybeSingle();
 
   if (error) {
+    console.error("[authController] Supabase usuarios:", {
+      code: error.code,
+      message: error.message,
+      details: error.details,
+      hint: error.hint,
+    });
+
     return {
       ok: false,
       status: 500,
       message: "Error al consultar credenciales.",
+      debug:
+        process.env.NODE_ENV === "development"
+          ? {
+              code: error.code,
+              message: error.message,
+              hint: error.hint,
+            }
+          : undefined,
     };
   }
 

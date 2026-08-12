@@ -1,7 +1,6 @@
 import ListPageLayout from "@/components/ListPageLayout";
 
 const columns = [
-  { key: "id", label: "ID" },
   { key: "cliente", label: "Cliente" },
   { key: "monto", label: "Monto" },
   { key: "fecha", label: "Fecha" },
@@ -15,7 +14,6 @@ export default function PagosPage() {
       apiEndpoint="pagos"
       sortKey="fecha"
       sortOrder="desc"
-      searchPlaceholder="Buscar por cliente, monto o fecha..."
     />
   );
 }

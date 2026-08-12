@@ -39,7 +39,7 @@ export default function UserMenu({ user, onLogout }) {
         aria-expanded={isOpen}
         aria-haspopup="true"
         aria-label="Menu de usuario"
-        className="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-300 bg-neutral-100 text-sm font-semibold text-neutral-900 transition hover:border-neutral-400 hover:bg-neutral-200"
+        className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-neutral-300 bg-neutral-100 text-sm font-semibold text-neutral-900 transition hover:border-neutral-400 hover:bg-neutral-200"
       >
         {initials}
       </button>
@@ -55,7 +55,7 @@ export default function UserMenu({ user, onLogout }) {
           <button
             type="button"
             onClick={handleLogout}
-            className="w-full px-4 py-2.5 text-left text-sm text-neutral-900 transition hover:bg-neutral-100"
+            className="w-full cursor-pointer px-4 py-2.5 text-left text-sm text-neutral-900 transition hover:bg-neutral-100"
           >
             Cerrar sesion
           </button>

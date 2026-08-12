@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ConfirmButton } from "@/components/shared/Button";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/context/UserContext";
 
@@ -90,13 +91,9 @@ export default function LoginPage() {
             </p>
           )}
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full rounded-md bg-neutral-900 py-2.5 text-sm font-medium text-white transition hover:bg-neutral-700 disabled:cursor-not-allowed disabled:opacity-60"
-          >
+          <ConfirmButton type="submit" size="full" disabled={isSubmitting}>
             {isSubmitting ? "Ingresando..." : "Ingresar"}
-          </button>
+          </ConfirmButton>
         </form>
       </div>
     </main>

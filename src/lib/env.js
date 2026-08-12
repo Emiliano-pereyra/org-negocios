@@ -4,9 +4,27 @@ const REQUIRED_VARS = [
   "SESSION_SECRET",
 ];
 
+function cleanEnvValue(value) {
+  const trimmed = value?.trim();
+
+  if (!trimmed) {
+    return trimmed;
+  }
+
+  // Evita que comillas del .env rompan URL o claves API
+  if (
+    (trimmed.startsWith('"') && trimmed.endsWith('"')) ||
+    (trimmed.startsWith("'") && trimmed.endsWith("'"))
+  ) {
+    return trimmed.slice(1, -1);
+  }
+
+  return trimmed;
+}
+
 // Valida que todas las variables existan. Sin fallback por seguridad.
 export function getRequiredEnv() {
-  const missing = REQUIRED_VARS.filter((name) => !process.env[name]?.trim());
+  const missing = REQUIRED_VARS.filter((name) => !cleanEnvValue(process.env[name]));
 
   if (missing.length > 0) {
     const error = new Error("MISSING_ENV");
@@ -15,9 +33,9 @@ export function getRequiredEnv() {
   }
 
   return {
-    supabaseUrl: process.env.SUPABASE_URL.trim(),
-    supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY.trim(),
-    sessionSecret: process.env.SESSION_SECRET.trim(),
+    supabaseUrl: cleanEnvValue(process.env.SUPABASE_URL),
+    supabaseServiceRoleKey: cleanEnvValue(process.env.SUPABASE_SERVICE_ROLE_KEY),
+    sessionSecret: cleanEnvValue(process.env.SESSION_SECRET),
   };
 }
 

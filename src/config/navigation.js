@@ -10,7 +10,7 @@ export const NAV_ITEMS = [
 export const CONTACT_LINKS = [
   {
     label: "WhatsApp",
-    href: "https://wa.me/5491112345678",
+    href: "https://wa.me/5491143994292",
     icon: "whatsapp",
   },
   {

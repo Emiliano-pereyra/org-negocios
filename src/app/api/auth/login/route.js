@@ -29,7 +29,13 @@ export async function POST(request) {
   const result = await loginUser(usuario, password);
 
   if (!result.ok) {
-    return Response.json({ error: result.message }, { status: result.status });
+    return Response.json(
+      {
+        error: result.message,
+        ...(result.debug ? { debug: result.debug } : {}),
+      },
+      { status: result.status }
+    );
   }
 
   return Response.json(result.data);

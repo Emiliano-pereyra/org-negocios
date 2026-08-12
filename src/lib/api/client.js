@@ -53,3 +53,17 @@ export async function apiPost(endpoint, body) {
     body: JSON.stringify(body),
   });
 }
+
+export async function apiPut(endpoint, body) {
+  return apiRequest(endpoint, {
+    method: "PUT",
+    body: JSON.stringify(body),
+  });
+}
+
+export async function apiDelete(endpoint, body) {
+  return apiRequest(endpoint, {
+    method: "DELETE",
+    body: JSON.stringify(body),
+  });
+}
